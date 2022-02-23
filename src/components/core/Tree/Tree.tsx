@@ -4,7 +4,7 @@ import styles from './Tree.styles';
 
 function Tree(props: TreeProps) {
 
-  return <>Tree</>;
+  return <div>Tree</div>;
 }
 
 export default withStyles(styles)(Tree);
