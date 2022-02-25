@@ -1,4 +1,3 @@
-import clsx from 'clsx';
 import { CSSProperties } from '@mui/styled-engine';
 import { withStyles } from '@mui/styles';
 import React, { MouseEventHandler, useCallback, useState } from 'react';
@@ -15,6 +14,7 @@ const getBarStyles: GetBarStylesFunc = function (direction, overrideStyles) {
   let styles: CSSProperties = {
     zIndex: 2,
     position: 'absolute',
+    cursor: `${direction}-resize`,
     ...overrideStyles,
   };
 
@@ -50,7 +50,7 @@ const getBarStyles: GetBarStylesFunc = function (direction, overrideStyles) {
       /** Horizontal resize to West */
       styles = {
         ...styles,
-        right: 0,
+        left: 0,
         top: 0,
         height: '100%',
       }
@@ -73,23 +73,39 @@ function ResizeArea(props: ResizeAreaProps) {
     children,
     minHeight,
     minWidth,
+    barProps,
   } = props;
   const [size, setSize] = useState<SizeProps>({
-    width: minWidth ? minWidth : 0,
-    height: minHeight ? minHeight : 0,
+    width: minWidth ? minWidth : 'unset',
+    height: minHeight ? minHeight : 'unset',
   });
 
-  const barStyles = getBarStyles(direction, props.classes && props.classes.bar ? props.classes.bar : {});
+  const barStyles = getBarStyles(direction, barProps && barProps.style ? barProps?.style : {});
+
+  const limitMinSize = (actualSize: number, minSize: number) => {
+    return actualSize <= minSize ? minSize : actualSize;
+  };
 
   /**
    * Handle resize component
    */
   const handleResize = useCallback((event: MouseEvent) => {
+    const extraValue = {
+      'e': event.movementX,
+      'w': - event.movementX,
+      's': event.movementY,
+      'n': - event.movementY,
+    };
+
     setSize(currentSize => ({
-      width: currentSize.width + event.movementX,
-      height: currentSize.height + event.movementY,
+      width: typeof (currentSize.width) === 'number'
+        ? limitMinSize(currentSize.width + extraValue[direction], minWidth ? minWidth : 0)
+        : 'unset',
+      height: typeof (currentSize.height) === 'number'
+        ? limitMinSize(currentSize.height + extraValue[direction], minHeight ? minHeight : 0)
+        : 'unset',
     }));
-  }, []);
+  }, [direction, minWidth, minHeight]);
 
   const handleStartResize = (event: MouseEvent) => {
     event.preventDefault();
@@ -106,15 +122,15 @@ function ResizeArea(props: ResizeAreaProps) {
   return (
     <div
       {...props}
+      className={props.classes && props.classes.root}
       style={
-        clsx(
-          props.classes ? props.classes.root : {},
-          size
-        ) as React.CSSProperties
+        size as React.CSSProperties
       }
     >
       {children}
       <ResizeBar
+        {...barProps}
+        className='ResizeAreaBar-root'
         role='button'
         style={barStyles as React.CSSProperties}
         onMouseDown={handleStartResize as unknown as MouseEventHandler<HTMLDivElement>}

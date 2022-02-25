@@ -1,9 +1,9 @@
-import { StyleRules } from "@mui/styles";
+import { Styles } from "@mui/styles/withStyles";
 
-const styles = {
+const styles = () => ({
   root: {
-    position: 'relative',
+    'position': 'relative',
   }
-};
+});
 
-export default styles as StyleRules<any, string>;
+export default styles as Styles<any, any, string>;
