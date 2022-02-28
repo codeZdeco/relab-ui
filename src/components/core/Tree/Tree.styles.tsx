@@ -1,5 +1,7 @@
-const styles = {
-  root: {}
-};
+import { Styles } from "@mui/styles/withStyles";
 
-export default styles;
+const styles = () => ({
+  root: {}
+});
+
+export default styles as Styles<any, any, string>;

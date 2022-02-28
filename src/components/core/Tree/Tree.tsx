@@ -1,10 +1,17 @@
 import { withStyles } from '@mui/styles';
-import TreeProps from './Tree.d';
-import styles from './Tree.styles';
+import { List } from '@mui/material';
+import { TreeProps, TreeStyles, TreeDefaultProps } from '@relab-ui/core/Tree';
 
 function Tree(props: TreeProps) {
+  const {
+    values,
+    floor,
+    classes
+  } = props;
 
-  return <div>Tree</div>;
+  return <div className={classes?.root}>Tree</div>;
 }
 
-export default withStyles(styles)(Tree);
+Tree.defaultProps = TreeDefaultProps;
+
+export default withStyles(TreeStyles)((Tree));

@@ -1,19 +1,20 @@
-import Tree from './Tree';
-import TreeProps from './Tree.d';
+import Tree, { TreeProps } from '@relab-ui/core/Tree';
 
 const Template = (props: TreeProps) => <Tree {...props} />;
 
-function Sample(args: TreeProps) {
-  return <Template {...args} />;
-}
+// function Sample(args: TreeProps) {
+//   return <Template {...args} />;
+// }
 
-export const Example = Sample.bind({
+export const Example = Template.bind({
   /** TODO: Add arguments here */
+  floor: 0,
+  values: [],
 });
 
 const StoryObject = {
   title: 'core/Tree',
-  component: Sample,
+  component: Example,
 };
 
 export default StoryObject;

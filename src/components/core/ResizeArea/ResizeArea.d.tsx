@@ -10,6 +10,7 @@ export interface SizeProps {
   height: number | string;
 }
 
+/** TODO: Support ne, nw, se, sw */
 export interface GetBarStylesFunc {
   (
     direction: ('n' | 'e' | 's' | 'w'),
