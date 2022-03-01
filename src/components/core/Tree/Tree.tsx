@@ -1,15 +1,33 @@
 import { withStyles } from '@mui/styles';
 import { List } from '@mui/material';
-import { TreeProps, TreeStyles, TreeDefaultProps } from '@relab-ui/core/Tree';
+import { TreeProps, TreeStyles, TreeDefaultProps, TreeValueProps } from '.';
+import TreeItem from '../../.internal/Tree/TreeItem';
 
 function Tree(props: TreeProps) {
-  const {
-    values,
-    floor,
-    classes
-  } = props;
+  const { values, classes } = props;
 
-  return <div className={classes?.root}>Tree</div>;
+  const renderTreeItem = (value: TreeValueProps) => {
+    const { id, children } = value;
+    const customTreeProps = {
+      ...props,
+      floor: props.floor + 1,
+      values: children ? children : [],
+    };
+
+    return (
+      <TreeItem key={id} itemProps={value} treeProps={customTreeProps} />
+    );
+  };
+
+  return (
+    <List
+      dense
+      {...props}
+      className={classes?.root}
+    >
+      {values?.map(renderTreeItem)}
+    </List>
+  );
 }
 
 Tree.defaultProps = TreeDefaultProps;

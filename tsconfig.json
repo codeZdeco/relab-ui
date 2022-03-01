@@ -20,31 +20,14 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx",
-    "paths": {
-      "@relab-ui/internal": [
-        "./components/.internal"
-      ],
-      "@relab-ui/internal/*": [
-        "./components/.internal/*"
-      ],
-      "@relab-ui/core": [
-        "./components/core"
-      ],
-      "@relab-ui/core/*": [
-        "./components/core/*"
-      ],
-      "@lodash": [
-        "./@lodash"
-      ]
-    }
+    "jsx": "react-jsx"
   },
   "include": [
     "./**/*.tsx",
     "./**/*"
   ],
   "exclude": [
-    "**/build",
+    "**/lib",
     "**/node_modules"
   ]
 }

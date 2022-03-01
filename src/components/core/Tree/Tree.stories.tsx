@@ -1,4 +1,4 @@
-import Tree, { TreeProps } from '@relab-ui/core/Tree';
+import Tree, { TreeProps } from '.';
 
 const Template = (props: TreeProps) => <Tree {...props} />;
 
