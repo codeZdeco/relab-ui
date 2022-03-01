@@ -4,7 +4,7 @@ import { TreeProps, TreeStyles, TreeDefaultProps, TreeValueProps } from '.';
 import TreeItem from '../../.internal/Tree/TreeItem';
 
 function Tree(props: TreeProps) {
-  const { values, classes } = props;
+  const { values, classes, ItemProps } = props;
 
   const renderTreeItem = (value: TreeValueProps) => {
     const { id, children } = value;
@@ -15,7 +15,12 @@ function Tree(props: TreeProps) {
     };
 
     return (
-      <TreeItem key={id} itemProps={value} treeProps={customTreeProps} />
+      <TreeItem
+        key={id}
+        {...ItemProps}
+        ValueProps={value}
+        TreeProps={customTreeProps}
+      />
     );
   };
 

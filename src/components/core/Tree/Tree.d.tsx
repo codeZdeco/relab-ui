@@ -79,7 +79,7 @@ interface TreeProps extends React.BaseHTMLAttributes<HTMLUListElement> {
     expand?: React.ReactNode;
     collapse?: React.ReactNode;
   };
-  itemProps?: React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
+  ItemProps?: React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
   classes?: TreeCSSProperties;
 }
 
