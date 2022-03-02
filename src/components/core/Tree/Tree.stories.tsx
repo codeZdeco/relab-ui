@@ -1,16 +1,19 @@
 import Tree, { TreeProps } from '.';
 
-const Template = (props: TreeProps) => <Tree {...props} />;
+const data = [
+  {
+    id: 'SE1068',
+    label: 'John Doe',
+    action: () => { },
+    extra: {},
+    tooltip: 'John Doe',
+    children: [],
+  }
+];
 
-// function Sample(args: TreeProps) {
-//   return <Template {...args} />;
-// }
+const Template = () => <Tree values={data} floor={0} />;
 
-export const Example = Template.bind({
-  /** TODO: Add arguments here */
-  floor: 0,
-  values: [],
-});
+export const Example = Template.bind({});
 
 const StoryObject = {
   title: 'core/Tree',

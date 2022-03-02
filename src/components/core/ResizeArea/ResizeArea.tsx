@@ -73,14 +73,14 @@ function ResizeArea(props: ResizeAreaProps) {
     children,
     minHeight,
     minWidth,
-    barProps,
+    BarProps,
   } = props;
   const [size, setSize] = useState<SizeProps>({
     width: minWidth ? minWidth : 'unset',
     height: minHeight ? minHeight : 'unset',
   });
 
-  const barStyles = getBarStyles(direction, barProps && barProps.style ? barProps?.style : {});
+  const barStyles = getBarStyles(direction, BarProps && BarProps.style ? BarProps?.style : {});
 
   const limitMinSize = (actualSize: number, minSize: number) => {
     return actualSize <= minSize ? minSize : actualSize;
@@ -129,7 +129,7 @@ function ResizeArea(props: ResizeAreaProps) {
     >
       {children}
       <ResizeBar
-        {...barProps}
+        {...BarProps}
         className='ResizeAreaBar-root'
         role='button'
         style={barStyles as React.CSSProperties}

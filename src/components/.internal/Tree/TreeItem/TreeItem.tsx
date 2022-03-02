@@ -21,7 +21,7 @@ function TreeItem(props: TreeItemProps) {
   const [open, setOpen] = useState(false);
   const { ValueProps, TreeProps } = props;
   const { label, children, tooltip } = ValueProps;
-  const { tooltip: isTooltip, icon } = TreeProps;
+  const { tooltip: isTooltip, icon, floor, padding } = TreeProps;
 
   const hasChildren = !!children && !!children.length;
 
@@ -33,14 +33,26 @@ function TreeItem(props: TreeItemProps) {
 
   const handleCollapse = () => setOpen(false);
 
+  const calChildPadding = (): React.CSSProperties => {
+    const childPadding = padding ? padding * floor : 0;
+
+    return {
+      paddingLeft: childPadding,
+    };
+  };
+
+  console.log(ValueProps);
+
   return (
     <>
       <ListItemButton
         {...props}
+        sx={calChildPadding()}
+        className='TreeItem-root'
         onClick={handleClick}
       >
         <TreeItemText
-          title={tooltip ? tooltip : ''}
+          title={tooltip ? tooltip : 'test'}
           tooltip={!!isTooltip}
           label={label}
         />

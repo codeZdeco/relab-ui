@@ -36,7 +36,7 @@ function WestSample() {
       <Template
         direction='w'
         minWidth={300}
-        barProps={{
+        BarProps={{
           style: HorizontalBarStyle
         }}
       >
@@ -56,7 +56,7 @@ function EastSample() {
       <Template
         direction='e'
         minWidth={300}
-        barProps={{
+        BarProps={{
           style: HorizontalBarStyle
         }}
       >
@@ -76,7 +76,7 @@ function SouthSample() {
       <Template
         direction='s'
         minHeight={100}
-        barProps={{
+        BarProps={{
           style: VerticalBarStyle
         }}
       >
@@ -96,7 +96,7 @@ function NorthSample() {
       <Template
         direction='n'
         minHeight={100}
-        barProps={{
+        BarProps={{
           style: VerticalBarStyle
         }}
       >

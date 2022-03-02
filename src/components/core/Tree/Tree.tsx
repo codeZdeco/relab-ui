@@ -3,24 +3,18 @@ import { List } from '@mui/material';
 import { TreeProps, TreeStyles, TreeDefaultProps, TreeValueProps } from '.';
 import TreeItem from '../../.internal/Tree/TreeItem';
 
-function Tree(props: TreeProps) {
-  const { values, classes, ItemProps } = props;
+function Tree(props: TreeProps & typeof TreeDefaultProps) {
+  const { values, classes, floor, ItemProps } = props;
 
-  const renderTreeItem = (value: TreeValueProps) => {
+  const renderTreeItem = (value: TreeValueProps): React.ReactNode => {
     const { id, children } = value;
-    const customTreeProps = {
-      ...props,
-      floor: props.floor + 1,
+    const customTreeProps = Object.assign(props, {
+      floor: floor + 1,
       values: children ? children : [],
-    };
+    });
 
     return (
-      <TreeItem
-        key={id}
-        {...ItemProps}
-        ValueProps={value}
-        TreeProps={customTreeProps}
-      />
+      <TreeItem key={id} ValueProps={value} TreeProps={customTreeProps} {...ItemProps} />
     );
   };
 

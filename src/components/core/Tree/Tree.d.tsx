@@ -68,7 +68,7 @@ interface TreeProps extends React.BaseHTMLAttributes<HTMLUListElement> {
    * Padding left for item
    * @default 4
    */
-  childPadding?: number;
+  padding?: number;
   /**
    * Icon for expand and collapse
    * @default Object

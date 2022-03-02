@@ -21,7 +21,7 @@ export interface GetBarStylesFunc {
 interface ResizeAreaProps extends React.BaseHTMLAttributes<HTMLDivElement> {
   direction: ('n' | 'w' | 'e' | 's');
   children: ReactNode;
-  barProps?: React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
+  BarProps?: React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
   classes?: ResizeAreaCSSProperties;
   minWidth?: number;
   minHeight?: number;
