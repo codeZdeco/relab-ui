@@ -1,17 +1,46 @@
-import Tree, { TreeProps } from '.';
+import Tree from '.';
+import { Folder, Earbuds } from '@mui/icons-material';
 
 const data = [
   {
-    id: 'SE1068',
-    label: 'John Doe',
-    action: () => { },
+    studentId: 'SE1068',
+    name: 'John Doe',
     extra: {},
-    tooltip: 'John Doe',
-    children: [],
+    info: 'John Doe',
+    children: [{
+      studentId: 'SE1111',
+      name: 'Jame',
+      extra: {},
+      info: 'Jame',
+      icon: <Earbuds />,
+    }],
+  },
+  {
+    studentId: 'SE9991',
+    name: 'Johny',
+    action: (_event: React.MouseEvent<HTMLElement>, extra: any) => console.log('Johny here', extra.name),
+    extra: {
+      name: 'Johny Dang',
+      age: 30,
+    },
+    info: 'Johny Dang',
   }
 ];
 
-const Template = () => <Tree values={data} floor={0} />;
+const Template = () => (
+  <Tree
+    values={data}
+    defaultItem={{
+      icon: <Folder />,
+      action: (_event: React.MouseEvent<HTMLElement>, _extra: any) => console.log('Default here')
+    }}
+    mapper={{
+      id: 'studentId',
+      label: 'name',
+      tooltip: 'studentId',
+    }}
+  />
+);
 
 export const Example = Template.bind({});
 

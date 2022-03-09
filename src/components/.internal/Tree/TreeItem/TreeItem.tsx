@@ -1,7 +1,7 @@
 import TreeItemProps, { TreeItemTextProps } from './TreeItem.d';
 import Tree from '../../../core/Tree';
-import { ListItemButton, ListItemText, Tooltip, Collapse, IconButton } from '@mui/material';
-import React, { MouseEventHandler, useState } from 'react';
+import { ListItemButton, ListItemText, Tooltip, Collapse, IconButton, ListItemIcon } from '@mui/material';
+import React, { useState } from 'react';
 
 function TreeItemText(props: TreeItemTextProps) {
   const { tooltip, title, label } = props;
@@ -19,29 +19,42 @@ function TreeItemText(props: TreeItemTextProps) {
 
 function TreeItem(props: TreeItemProps) {
   const [open, setOpen] = useState(false);
-  const { ValueProps, TreeProps } = props;
-  const { label, children, tooltip } = ValueProps;
-  const { tooltip: isTooltip, icon, floor, padding } = TreeProps;
+  const { ValueProps, TreeProps, onClick } = props;
+  const { label, children, tooltip, action, extra, icon: itemIcon } = ValueProps;
+  const { tooltip: isTooltip, icon, floor, padding, defaultItem } = TreeProps;
 
   const hasChildren = !!children && !!children.length;
 
-  const handleClick = (event: any): void => {
-
+  const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>): void => {
+    /** Specific action on item */
+    action && action(event, extra);
+    /** Trigger default action if action not available */
+    !!!action && defaultItem && defaultItem.action && defaultItem.action(event, extra);
+    onClick && onClick(event);
   };
 
-  const handleExpand = () => setOpen(true);
+  const handleExpand = (event: React.MouseEvent<HTMLElement>) => {
+    event.stopPropagation();
+    setOpen(true);
+  };
 
-  const handleCollapse = () => setOpen(false);
+  const handleCollapse = (event: React.MouseEvent<HTMLElement>) => {
+    event.stopPropagation();
+    setOpen(false);
+  };
 
+  /**
+   * Calculate child padding
+   * @returns CSSProps
+   */
   const calChildPadding = (): React.CSSProperties => {
     const childPadding = padding ? padding * floor : 0;
-
-    return {
+    const paddingProps = {
       paddingLeft: childPadding,
     };
-  };
 
-  console.log(ValueProps);
+    return paddingProps;
+  };
 
   return (
     <>
@@ -51,20 +64,27 @@ function TreeItem(props: TreeItemProps) {
         className='TreeItem-root'
         onClick={handleClick}
       >
+        {
+          (itemIcon || (defaultItem && defaultItem.icon)) && (
+            <ListItemIcon>
+              {itemIcon || (defaultItem && defaultItem.icon)}
+            </ListItemIcon>
+          )
+        }
         <TreeItemText
-          title={tooltip ? tooltip : 'test'}
+          title={tooltip ? tooltip : ((defaultItem && defaultItem?.tooltip) || '')}
           tooltip={!!isTooltip}
           label={label}
         />
         {
           hasChildren && (
             open ? (
-              <IconButton size='small' onClick={handleExpand}>
-                {icon?.expand}
-              </IconButton>
-            ) : (
               <IconButton size='small' onClick={handleCollapse}>
                 {icon?.collapse}
+              </IconButton>
+            ) : (
+              <IconButton size='small' onClick={handleExpand}>
+                {icon?.expand}
               </IconButton>
             )
           )
@@ -75,6 +95,7 @@ function TreeItem(props: TreeItemProps) {
           <Collapse in={open}>
             <Tree
               {...TreeProps}
+              items={children}
             />
           </Collapse>
         )
