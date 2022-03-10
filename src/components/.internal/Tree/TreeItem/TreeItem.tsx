@@ -2,6 +2,7 @@ import TreeItemProps, { TreeItemTextProps } from './TreeItem.d';
 import Tree from '../../../core/Tree';
 import { ListItemButton, ListItemText, Tooltip, Collapse, IconButton, ListItemIcon } from '@mui/material';
 import React, { useState } from 'react';
+import _ from '../../../../@lodash';
 
 function TreeItemText(props: TreeItemTextProps) {
   const { tooltip, title, label } = props;
@@ -25,26 +26,12 @@ function TreeItem(props: TreeItemProps) {
 
   const hasChildren = !!children && !!children.length;
 
+  const evenProps = _.overrideMouseEvents(ValueProps, props);
+
   const handleItemClick = (event: React.MouseEvent<HTMLElement>) => {
     action && action(event, extra);
     !!!action && defaultItem && defaultItem.action && defaultItem.action(event, extra);
     props.onClick && props.onClick(event, ValueProps);
-  };
-
-  const handleItemDoubleClick = (event: React.MouseEvent<HTMLElement>) => {
-    props.onDoubleClick && props.onDoubleClick(event, ValueProps);
-  };
-
-  const handleItemDrag = (event: React.MouseEvent<HTMLElement>) => {
-    props.onDrag && props.onDrag(event, ValueProps);
-  };
-
-  const handleItemDrop = (event: React.MouseEvent<HTMLElement>) => {
-    props.onDrop && props.onDrop(event, ValueProps);
-  };
-
-  const handleItemDragStart = (event: React.MouseEvent<HTMLElement>) => {
-    props.onDragStart && props.onDragStart(event, ValueProps);
   };
 
   const handleExpand = (event: React.MouseEvent<HTMLElement>) => {
@@ -76,11 +63,8 @@ function TreeItem(props: TreeItemProps) {
         {...props}
         sx={calChildPadding()}
         className='TreeItem-root'
+        {...evenProps}
         onClick={handleItemClick}
-        onDoubleClick={handleItemDoubleClick}
-        onDrop={handleItemDrop}
-        onDrag={handleItemDrag}
-        onDragStart={handleItemDragStart}
       >
         {
           (itemIcon || (defaultItem && defaultItem.icon)) && (

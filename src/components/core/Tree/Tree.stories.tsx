@@ -34,6 +34,9 @@ const Template = () => (
       icon: <Folder />,
       action: (_event: React.MouseEvent<HTMLElement>, _extra: any) => console.log('Default here')
     }}
+    ItemProps={{
+      onContextMenu: (_event: any, value: any) => console.log(value),
+    }}
     mapper={{
       id: 'studentId',
       label: 'name',

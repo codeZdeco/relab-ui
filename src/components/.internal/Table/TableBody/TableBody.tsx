@@ -6,6 +6,7 @@ import {
   TableCell,
 } from '@mui/material';
 import { FieldDefaultProps } from '../../../core/Table/Table.default';
+import _ from '../../../../@lodash';
 
 /**
  * Compare values 2 indexes
@@ -82,6 +83,7 @@ function TableBody(props: TableBodyProps) {
     RowProps && RowProps.onDragStart && RowProps.onDragStart(event, value);
   };
 
+
   const isSelected = (value: {
     [key: string]: any,
   }): boolean => {
@@ -127,6 +129,7 @@ function TableBody(props: TableBodyProps) {
   }) => {
     const isRowSelected = isSelected(value);
     const rowProps = consumeRowProps(value);
+    const eventProps = _.overrideMouseEvents(value, RowProps ? RowProps : {});
 
     return (
       <TableRow
@@ -138,12 +141,7 @@ function TableBody(props: TableBodyProps) {
         aria-checked={isRowSelected}
         {...RowProps}
         {...rowProps}
-        onClick={(event: React.MouseEvent<HTMLElement>) => handleRowClick(event, value)}
-        onDoubleClick={(event: React.MouseEvent<HTMLElement>) => handleRowDoubleClick(event, value)}
-        onDrag={(event: React.MouseEvent<HTMLElement>) => handleRowDrag(event, value)}
-        onDrop={(event: React.MouseEvent<HTMLElement>) => handleRowDrop(event, value)}
-        onDragStart={(event: React.MouseEvent<HTMLElement>) => handleRowDragStart(event, value)}
-        onContextMenu={(event: React.MouseEvent<HTMLElement>) => handleRowContextMenu(event, value)}
+        {...eventProps}
       >
         {
           fields.map((field: FieldProps) => renderCell(field, value))
