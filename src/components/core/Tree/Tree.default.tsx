@@ -1,6 +1,26 @@
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
 import { TreeProps } from '.';
 
+const mapper = {};
+
+const fields = [
+  'id',
+  'label',
+  'action',
+  'extra',
+  'tooltip',
+  'icon',
+  'children',
+  'disabled'
+];
+
+fields.map((field: string) => {
+  Object.assign(mapper, {
+    [field]: field,
+  });
+  return field;
+})
+
 const TreeDefaultProps: TreeProps = {
   values: [],
   tooltip: true,
@@ -12,16 +32,7 @@ const TreeDefaultProps: TreeProps = {
     expand: <ExpandMore />,
     collapse: <ExpandLess />,
   },
-  mapper: {
-    id: 'id',
-    label: 'label',
-    action: 'action',
-    extra: 'extra',
-    tooltip: 'tooltip',
-    icon: 'icon',
-    children: 'children',
-    disabled: 'disabled',
-  }
+  mapper,
 };
 
 export default TreeDefaultProps;

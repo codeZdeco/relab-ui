@@ -1,3 +1,6 @@
+import { Modify } from '../../.global/commons.d';
+import { OverrideMouseEvent } from '../../.global/events.d';
+
 export interface TreeCSSProperties {
   root?: string;
 }
@@ -106,7 +109,7 @@ interface TreeProps extends React.BaseHTMLAttributes<HTMLUListElement> {
      */
     action?: ((event: React.MouseEvent<HTMLElement>, extra: any) => void);
   }
-  ItemProps?: React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
+  ItemProps?: Modify<React.BaseHTMLAttributes<HTMLElement>, OverrideMouseEvent>;
   classes?: TreeCSSProperties;
 }
 

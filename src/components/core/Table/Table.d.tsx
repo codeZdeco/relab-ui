@@ -1,9 +1,16 @@
+import { Modify } from '../../.global/commons.d';
+import { OverrideMouseEvent } from '../../.global/events.d';
+
 export interface FieldProps {
   id: string;
-  render: (extra: any) => string | number;
-  align?: ('left' | 'center' | 'right');
+  label: string;
+  render: (extra: any, value: any) => React.ReactNode | string | number;
+  align?: ('left' | 'center' | 'right' | 'justify' | 'inherit');
+  padding?: ('none' | 'normal');
   sortable?: boolean;
   extra?: any;
+  isPrimary?: boolean;
+  hidden?: boolean;
 }
 
 interface TableProps extends React.BaseHTMLAttributes<HTMLTableElement> {
@@ -11,10 +18,15 @@ interface TableProps extends React.BaseHTMLAttributes<HTMLTableElement> {
   values: Array<{
     [key: string]: string | number | undefined;
   }>;
+  dense?: boolean;
+  defaultSort?: (string | number);
+  selected?: Array<string | number>;
   selectable?: boolean;
   sticky?: boolean;
-  HeaderProps?: React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
-  FooterProps?: React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
+  RowProps?: Modify<React.BaseHTMLAttributes<HTMLElement>, OverrideMouseEvent>;
+  BodyProps?: Modify<React.BaseHTMLAttributes<HTMLElement>, OverrideMouseEvent>;
+  HeaderProps?: Modify<React.BaseHTMLAttributes<HTMLElement>, OverrideMouseEvent>;
+  FooterProps?: Modify<React.BaseHTMLAttributes<HTMLElement>, OverrideMouseEvent>;
   conditions?: Array<(value: any) => React.BaseHTMLAttributes<HTMLTableRowElement>>;
 }
 

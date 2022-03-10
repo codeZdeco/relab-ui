@@ -16,7 +16,12 @@ function Tree(props: TreeProps & typeof TreeDefaultProps) {
     };
 
     return (
-      <TreeItem key={id} ValueProps={value} TreeProps={customTreeProps} {...ItemProps} />
+      <TreeItem
+        key={id}
+        ValueProps={value}
+        TreeProps={customTreeProps}
+        {...ItemProps}
+      />
     );
   };
 

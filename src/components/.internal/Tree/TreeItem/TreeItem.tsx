@@ -19,18 +19,32 @@ function TreeItemText(props: TreeItemTextProps) {
 
 function TreeItem(props: TreeItemProps) {
   const [open, setOpen] = useState(false);
-  const { ValueProps, TreeProps, onClick } = props;
+  const { ValueProps, TreeProps } = props;
   const { label, children, tooltip, action, extra, icon: itemIcon } = ValueProps;
   const { tooltip: isTooltip, icon, floor, padding, defaultItem } = TreeProps;
 
   const hasChildren = !!children && !!children.length;
 
-  const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>): void => {
-    /** Specific action on item */
+  const handleItemClick = (event: React.MouseEvent<HTMLElement>) => {
     action && action(event, extra);
-    /** Trigger default action if action not available */
     !!!action && defaultItem && defaultItem.action && defaultItem.action(event, extra);
-    onClick && onClick(event);
+    props.onClick && props.onClick(event, ValueProps);
+  };
+
+  const handleItemDoubleClick = (event: React.MouseEvent<HTMLElement>) => {
+    props.onDoubleClick && props.onDoubleClick(event, ValueProps);
+  };
+
+  const handleItemDrag = (event: React.MouseEvent<HTMLElement>) => {
+    props.onDrag && props.onDrag(event, ValueProps);
+  };
+
+  const handleItemDrop = (event: React.MouseEvent<HTMLElement>) => {
+    props.onDrop && props.onDrop(event, ValueProps);
+  };
+
+  const handleItemDragStart = (event: React.MouseEvent<HTMLElement>) => {
+    props.onDragStart && props.onDragStart(event, ValueProps);
   };
 
   const handleExpand = (event: React.MouseEvent<HTMLElement>) => {
@@ -62,7 +76,11 @@ function TreeItem(props: TreeItemProps) {
         {...props}
         sx={calChildPadding()}
         className='TreeItem-root'
-        onClick={handleClick}
+        onClick={handleItemClick}
+        onDoubleClick={handleItemDoubleClick}
+        onDrop={handleItemDrop}
+        onDrag={handleItemDrag}
+        onDragStart={handleItemDragStart}
       >
         {
           (itemIcon || (defaultItem && defaultItem.icon)) && (

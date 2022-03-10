@@ -1,4 +1,6 @@
 import { TreeValueProps, TreeProps } from '../../../core/Tree';
+import { Modify } from '../../../.global/commons.d';
+import { OverrideMouseEvent } from '../../../.global/events.d';
 
 export interface TreeItemTextProps {
   tooltip: boolean;
@@ -6,7 +8,7 @@ export interface TreeItemTextProps {
   title: string;
 }
 
-interface TreeItemProps extends React.BaseHTMLAttributes<HTMLDivElement> {
+interface TreeItemProps extends Modify<React.BaseHTMLAttributes<HTMLDivElement>, OverrideMouseEvent> {
   ValueProps: TreeValueProps;
   TreeProps: TreeProps;
 }
