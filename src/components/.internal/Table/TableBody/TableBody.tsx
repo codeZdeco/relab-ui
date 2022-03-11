@@ -59,31 +59,6 @@ function TableBody(props: TableBodyProps) {
   /** Extract primary field */
   const primaryField = fields.filter((field: FieldProps) => field.isPrimary)[0];
 
-  const handleRowClick = (event: React.MouseEvent<HTMLElement>, value: any) => {
-    RowProps && RowProps.onClick && RowProps.onClick(event, value);
-  };
-
-  const handleRowDoubleClick = (event: React.MouseEvent<HTMLElement>, value: any) => {
-    RowProps && RowProps.onDoubleClick && RowProps.onDoubleClick(event, value);
-  };
-
-  const handleRowContextMenu = (event: React.MouseEvent<HTMLElement>, value: any) => {
-    RowProps && RowProps.onContextMenu && RowProps.onContextMenu(event, value);
-  };
-
-  const handleRowDrop = (event: React.MouseEvent<HTMLElement>, value: any) => {
-    RowProps && RowProps.onDrop && RowProps.onDrop(event, value);
-  };
-
-  const handleRowDrag = (event: React.MouseEvent<HTMLElement>, value: any) => {
-    RowProps && RowProps.onDrag && RowProps.onDrag(event, value);
-  };
-
-  const handleRowDragStart = (event: React.MouseEvent<HTMLElement>, value: any) => {
-    RowProps && RowProps.onDragStart && RowProps.onDragStart(event, value);
-  };
-
-
   const isSelected = (value: {
     [key: string]: any,
   }): boolean => {

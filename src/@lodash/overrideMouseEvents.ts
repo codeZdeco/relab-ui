@@ -12,7 +12,10 @@ const events = [
   'onContextMenu',
 ];
 
-function overrideMouseEvents(value: any, props: Modify<React.BaseHTMLAttributes<HTMLElement>, OverrideMouseEvent>) {
+function overrideMouseEvents(
+  value: any,
+  props: Modify<React.BaseHTMLAttributes<HTMLElement>, OverrideMouseEvent>
+): Modify<React.BaseHTMLAttributes<HTMLElement>, OverrideMouseEvent> {
   const eventProps = {};
 
   events.map((eventName: string) => {

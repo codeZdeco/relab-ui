@@ -26,13 +26,15 @@ function TreeItem(props: TreeItemProps) {
 
   const hasChildren = !!children && !!children.length;
 
-  const evenProps = _.overrideMouseEvents(ValueProps, props);
+  const eventProps = _.overrideMouseEvents(ValueProps, props);
 
-  const handleItemClick = (event: React.MouseEvent<HTMLElement>) => {
-    action && action(event, extra);
-    !!!action && defaultItem && defaultItem.action && defaultItem.action(event, extra);
-    props.onClick && props.onClick(event, ValueProps);
-  };
+  Object.assign(eventProps, {
+    onClick: (event: React.MouseEvent<HTMLElement>) => {
+      action && action(event, extra);
+      !!!action && defaultItem && defaultItem.action && defaultItem.action(event, extra);
+      props.onClick && props.onClick(event, ValueProps);
+    },
+  });
 
   const handleExpand = (event: React.MouseEvent<HTMLElement>) => {
     event.stopPropagation();
@@ -63,8 +65,8 @@ function TreeItem(props: TreeItemProps) {
         {...props}
         sx={calChildPadding()}
         className='TreeItem-root'
-        {...evenProps}
-        onClick={handleItemClick}
+        {...eventProps}
+      // onClick={handleItemClick}
       >
         {
           (itemIcon || (defaultItem && defaultItem.icon)) && (
