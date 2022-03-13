@@ -4,6 +4,7 @@ import {
   ListItemIcon,
   Typography,
   ClickAwayListener,
+  ListItemText,
 } from '@mui/material';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { MouseEvent, useState, useRef } from "react";
@@ -38,9 +39,11 @@ function ContextMenuItem(props: ContextMenuItemProps) {
         <ListItemIcon>
           {icon}
         </ListItemIcon>
-        <Typography variant='inherit' noWrap>
-          {label}
-        </Typography>
+        <ListItemText>
+          <Typography variant='inherit' noWrap>
+            {label}
+          </Typography>
+        </ListItemText>
         <Typography variant='body2' color='text.secondary'>
           {hasChildren ? (<ChevronRightIcon />) : shortcut}
         </Typography>
@@ -52,8 +55,8 @@ function ContextMenuItem(props: ContextMenuItemProps) {
               {...MenuProps}
               open={open}
               values={children}
-              anchorEl={MenuItemRef}
-              anchor='top-start'
+              anchorEl={MenuItemRef.current}
+              anchor='right-start'
             />
           </ClickAwayListener>
         )

@@ -18,8 +18,9 @@ interface ContextMenuProps extends BaseHTMLAttributes<HTMLElement> {
   values: Array<MenuValueProps | null>;
   open: boolean;
   anchor: (CSSProperties | ('left' | 'left-start' | 'left-end' | 'top-start' | 'top' | 'top-end' | 'right-start' | 'right' | 'right-end' | 'bottom-start' | 'bottom' | 'bottom-end'));
-  anchorEl: HTMLElement | (() => HTMLElement) | null | undefined;
+  anchorEl?: HTMLElement | (() => HTMLElement) | null | undefined;
   width?: number | string;
+  onClose?: (event: any) => void;
 }
 
 export default ContextMenuProps;
