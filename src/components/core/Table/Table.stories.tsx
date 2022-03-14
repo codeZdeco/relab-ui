@@ -47,7 +47,7 @@ const conditions = [
         '& .MuiTableCell-root': {
           color: 'white !important',
         }
-      }
+      },
     }
   },
   (value: any) => {

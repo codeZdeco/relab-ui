@@ -20,14 +20,17 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
   },
   "include": [
     "./**/*.tsx",
+    "./components/core/**/*.d.tsx",
+    "./components/.global/**/*.d.tsx",
     "./**/*"
   ],
   "exclude": [
     "**/lib",
-    "**/node_modules"
+    "**/node_modules",
+    "**/typings"
   ]
 }
