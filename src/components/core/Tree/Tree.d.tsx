@@ -38,7 +38,7 @@ export interface TreeValueProps {
   /**
    * Item's children for expanded view
    */
-  children?: Array<TreeValueProps>;
+  children?: Array<TreeValueProps> | { [key: string]: TreeValueProps };
 }
 
 interface TreeProps extends React.BaseHTMLAttributes<HTMLUListElement> {
@@ -111,6 +111,7 @@ interface TreeProps extends React.BaseHTMLAttributes<HTMLUListElement> {
   }
   ItemProps?: Modify<React.BaseHTMLAttributes<HTMLElement>, OverrideMouseEvent>;
   classes?: TreeCSSProperties;
+  filter?: (value: any) => any;
 }
 
 export default TreeProps;

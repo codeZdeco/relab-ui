@@ -5,14 +5,14 @@ import TreeItem from '../../.internal/Tree/TreeItem';
 import { MapperProps } from './Tree.d';
 
 function Tree(props: TreeProps & typeof TreeDefaultProps) {
-  const { values, classes, floor, ItemProps, mapper } = props;
+  const { values, classes, floor, ItemProps, mapper, filter } = props;
 
   const renderTreeItem = (value: TreeValueProps): React.ReactNode => {
     const { id, children } = value;
     const customTreeProps = {
       ...props,
       floor: floor + 1,
-      values: children ? children : [],
+      values: children ? Array.isArray(children) ? children : Object.values(children) : [],
     };
 
     return (
@@ -25,7 +25,7 @@ function Tree(props: TreeProps & typeof TreeDefaultProps) {
     );
   };
 
-  const mappedValues: Array<TreeValueProps> = values?.map((value: {
+  const mappedValues: Array<TreeValueProps> = values?.filter(filter ? filter : (value: any) => value)?.map((value: {
     [key: string]: any;
   }) => {
     const newValue = {
