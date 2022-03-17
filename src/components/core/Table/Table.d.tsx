@@ -11,6 +11,7 @@ export interface FieldProps {
   extra?: any;
   isPrimary?: boolean;
   hidden?: boolean;
+  width?: number;
 }
 
 interface TableProps extends React.BaseHTMLAttributes<HTMLTableElement> {

@@ -24,6 +24,7 @@ const fields = [
     label: 'Student ID',
     render: (_extra: any, value: any) => value['id'],
     isPrimary: true,
+    width: 100,
   },
   {
     id: 'name',

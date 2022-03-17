@@ -12,7 +12,7 @@ function TableHeader(props: TableHeaderProps) {
   const { fields, HeaderProps } = TableProps;
 
   const renderTableHeadCell = (field: FieldProps): React.ReactNode => {
-    const { id, align, padding, label, sortable, hidden } = {
+    const { id, align, padding, label, sortable, hidden, width } = {
       ...FieldDefaultProps,
       ...field,
     };
@@ -22,6 +22,7 @@ function TableHeader(props: TableHeaderProps) {
         key={id}
         align={align}
         padding={padding}
+        width={width}
       >
         {
           sortable ? (
