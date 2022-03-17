@@ -18,7 +18,7 @@ function TreeItemText(props: TreeItemTextProps) {
   );
 }
 
-function TreeItem(props: TreeItemProps) {
+const TreeItem: React.FC<TreeItemProps> = (props) =>{
   const [open, setOpen] = useState(false);
   const { ValueProps, TreeProps } = props;
   const { label, children, tooltip, action, extra, icon: itemIcon } = ValueProps;
