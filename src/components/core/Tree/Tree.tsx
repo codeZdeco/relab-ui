@@ -7,6 +7,8 @@ import { MapperProps } from './Tree.d';
 function Tree(props: TreeProps & typeof TreeDefaultProps) {
   const { values, classes, floor, ItemProps, mapper, filter } = props;
 
+  const isArry = Array.isArray(values);
+
   const renderTreeItem = (value: TreeValueProps): React.ReactNode => {
     const { id, children } = value;
     const customTreeProps = {
@@ -25,7 +27,7 @@ function Tree(props: TreeProps & typeof TreeDefaultProps) {
     );
   };
 
-  const mappedValues: Array<TreeValueProps> = values?.filter(filter ? filter : (value: any) => value)?.map((value: {
+  const mappedValues: Array<TreeValueProps> = (isArry ? values : Object.values(values))?.filter(filter ? filter : (value: any) => value)?.map((value: {
     [key: string]: any;
   }) => {
     const newValue = {

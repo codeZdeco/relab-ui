@@ -22,9 +22,14 @@ function TreeItem(props: TreeItemProps) {
   const [open, setOpen] = useState(false);
   const { ValueProps, TreeProps } = props;
   const { label, children, tooltip, action, extra, icon: itemIcon } = ValueProps;
-  const { tooltip: isTooltip, icon, floor, padding, defaultItem } = TreeProps;
+  const { tooltip: isTooltip, icon, floor, padding, defaultItem, filter } = TreeProps;
 
-  const hasChildren = !!children && !!children.length;
+  const isArray = Array.isArray(children);
+
+  const hasChildren = !!children
+    && !!(isArray
+      ? children.filter(filter ? filter : () => true).length
+      : Object.values(children).filter(filter ? filter : () => true).length);
 
   const eventProps = _.overrideMouseEvents(ValueProps, props);
 

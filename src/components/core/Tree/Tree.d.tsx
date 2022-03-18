@@ -45,7 +45,7 @@ interface TreeProps extends React.BaseHTMLAttributes<HTMLUListElement> {
   /**
    * List of item at same level
    */
-  values: Array<TreeValueProps | any>;
+  values: Array<TreeValueProps | any> | { [key: string]: any };
   /**
    * Tree level
    * @default 0
