@@ -1,8 +1,9 @@
 import { withStyles } from '@mui/styles';
 import { List } from '@mui/material';
 import { TreeProps, TreeStyles, TreeDefaultProps, TreeValueProps } from '.';
-import TreeItem from '../../.internal/Tree/TreeItem';
+import TreeItem from '_internal/Tree/TreeItem'
 import { MapperProps } from './Tree.d';
+import React from 'react';
 
 function Tree(props: TreeProps & typeof TreeDefaultProps) {
   const { values, classes, floor, ItemProps, mapper, filter } = props;
