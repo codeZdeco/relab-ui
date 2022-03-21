@@ -7,6 +7,7 @@ export interface MenuValueProps {
   action?: (event: MouseEvent<HTMLElement>, extra: any) => void;
   children?: Array<MenuValueProps>;
   extra?: any;
+  disabled?: boolean;
 }
 
 export interface AnchorProps {

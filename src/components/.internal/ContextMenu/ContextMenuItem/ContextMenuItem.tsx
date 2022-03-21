@@ -8,13 +8,13 @@ import {
 } from '@mui/material';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { MouseEvent, useState, useRef } from "react";
-import ContextMenu from '../../../core/ContextMenu';
+import ContextMenu from '_core/ContextMenu';
 
 function ContextMenuItem(props: ContextMenuItemProps) {
   const { MenuProps, ValueProps } = props;
   const [open, setOpen] = useState(false);
   const MenuItemRef = useRef(null);
-  const { children, icon, label, shortcut, action, extra } = ValueProps;
+  const { children, icon, label, shortcut, action, extra, disabled } = ValueProps;
 
   const hasChildren = !!children && !!children.length;
 
@@ -35,7 +35,7 @@ function ContextMenuItem(props: ContextMenuItemProps) {
 
   return (
     <>
-      <MenuItem onClick={handleClick} ref={MenuItemRef}>
+      <MenuItem onClick={handleClick} ref={MenuItemRef} disabled={disabled}>
         <ListItemIcon>
           {icon}
         </ListItemIcon>

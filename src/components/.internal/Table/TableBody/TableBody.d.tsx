@@ -1,4 +1,4 @@
-import { TableProps, FieldProps } from '../../../core/Table';
+import { TableProps, FieldProps } from '_core/Table';
 
 interface TableBodyProps {
   TableProps: TableProps;

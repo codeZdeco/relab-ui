@@ -5,7 +5,7 @@ import {
   TableRow,
   TableCell,
 } from '@mui/material';
-import { FieldDefaultProps } from '../../../core/Table/Table.default';
+import { FieldDefaultProps } from '_core/Table/Table.default';
 import _ from '../../../../@lodash';
 
 /**

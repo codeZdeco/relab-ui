@@ -1,5 +1,5 @@
 import TreeItemProps, { TreeItemTextProps } from './TreeItem.d';
-import Tree from '../../../core/Tree';
+import Tree from '_core/Tree';
 import { ListItemButton, ListItemText, Tooltip, Collapse, IconButton, ListItemIcon } from '@mui/material';
 import React, { useState } from 'react';
 import _ from '../../../../@lodash';

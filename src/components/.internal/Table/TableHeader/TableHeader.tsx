@@ -1,6 +1,6 @@
 import { TableHead, TableRow, TableCell, TableSortLabel } from '@mui/material';
 import TableHeaderProps, { FieldProps } from './TableHeader.d';
-import { FieldDefaultProps } from '../../../core/Table/Table.default';
+import { FieldDefaultProps } from '_core/Table/Table.default';
 
 function TableHeader(props: TableHeaderProps) {
   const {

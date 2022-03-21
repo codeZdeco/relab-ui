@@ -1,4 +1,4 @@
-import { TreeValueProps, TreeProps } from '../../../core/Tree';
+import { TreeValueProps, TreeProps } from '_core/Tree';
 import { Modify } from '../../../.global/commons.d';
 import { OverrideMouseEvent } from '../../../.global/events.d';
 
