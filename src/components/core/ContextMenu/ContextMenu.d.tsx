@@ -1,5 +1,9 @@
 import { BaseHTMLAttributes, CSSProperties, MouseEvent } from "react";
 
+export interface MenuCSSProperties {
+  root?: string;
+}
+
 export interface MenuValueProps {
   label: string;
   icon?: React.ReactNode;
@@ -22,6 +26,7 @@ interface ContextMenuProps extends BaseHTMLAttributes<HTMLElement> {
   anchorEl?: HTMLElement | (() => HTMLElement) | null | undefined;
   width?: number | string;
   onClose?: (event: any) => void;
+  classes?: MenuCSSProperties;
 }
 
 export default ContextMenuProps;

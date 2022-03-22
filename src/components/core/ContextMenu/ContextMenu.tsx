@@ -22,7 +22,7 @@ const reassignAnchor = (
 
 function ContextMenu(props: ContextMenuProps) {
   const MenuRef = useRef<HTMLDivElement>(null);
-  const { open, anchorEl, anchor, width, values, onClose: handleClose } = props;
+  const { open, anchorEl, anchor, width, values, onClose: handleClose, classes } = props;
 
   const isFixedPosition = typeof anchor !== 'string';
 
@@ -49,16 +49,17 @@ function ContextMenu(props: ContextMenuProps) {
     if (isFixedPosition) return anchor;
 
     return {};
-  }, [MenuRef.current, anchor, isFixedPosition]);
+  }, [anchor, isFixedPosition]);
 
   return (
     <Popper
+      className={classes && classes.root}
       open={open}
       anchorEl={!isFixedPosition ? anchorEl : null}
       placement={!isFixedPosition ? anchor : undefined}
       style={isFixedPosition ? flexAnchor : {}}
     >
-      <ClickAwayListener onClickAway={handleClose ? handleClose : () => {}}>
+      <ClickAwayListener onClickAway={handleClose ? handleClose : () => { }}>
         <Paper {...props} sx={{ width }} ref={MenuRef}>
           <MenuList>
             {
