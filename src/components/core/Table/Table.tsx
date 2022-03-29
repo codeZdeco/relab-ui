@@ -10,9 +10,9 @@ import { TableHeader, TableBody } from '_internal/Table';
 import TableDefaultProps from './Table.default';
 
 function Table(props: TableProps) {
-  const { sticky, dense, defaultSort, fields } = props;
+  const { sticky, dense, defaultSort, fields, defaultSortDirection } = props;
 
-  const [orderDirection, setOrderDirection] = useState<'asc' | 'desc'>('asc');
+  const [orderDirection, setOrderDirection] = useState<'asc' | 'desc'>(defaultSortDirection ? defaultSortDirection : 'asc');
   const [orderBy, setOrderBy] = useState<string | number>(defaultSort ? defaultSort : fields[0].id);
 
   const handleSort = (_event: React.MouseEvent<HTMLElement>, fieldId: (string | number)) => {

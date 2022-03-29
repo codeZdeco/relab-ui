@@ -20,6 +20,7 @@ interface TableProps extends React.BaseHTMLAttributes<HTMLTableElement> {
     [key: string]: string | number | undefined;
   }>;
   dense?: boolean;
+  defaultSortDirection?: ('asc' | 'desc');
   defaultSort?: (string | number);
   selected?: Array<string | number>;
   selectable?: boolean;
