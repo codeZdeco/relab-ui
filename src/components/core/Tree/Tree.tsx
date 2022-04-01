@@ -6,7 +6,14 @@ import { MapperProps } from './Tree.d';
 import React from 'react';
 
 function Tree(props: TreeProps & typeof TreeDefaultProps) {
-  const { values, classes, floor, ItemProps, mapper, filter } = props;
+  const {
+    values,
+    classes,
+    floor,
+    ItemProps,
+    mapper,
+    filter
+  } = props;
 
   const isArry = Array.isArray(values);
 
