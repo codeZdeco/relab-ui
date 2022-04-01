@@ -71,8 +71,7 @@
     "rollup-plugin-flat-dts": "^1.5.0",
     "rollup-plugin-sourcemaps": "^0.6.3",
     "rollup-plugin-typescript2": "^0.31.2",
-    "tsconfig.json": "^1.0.10",
-    "webpack-cli": "^4.9.2"
+    "tsconfig.json": "^1.0.10"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
@@ -87,8 +86,5 @@
   },
   "peerDependencies": {
     "@types/react": "*"
-  },
-  "resolutions": {
-    "webpack": "4.9.2"
   }
 }
