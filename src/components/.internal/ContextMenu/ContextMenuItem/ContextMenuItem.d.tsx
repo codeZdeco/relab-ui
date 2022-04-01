@@ -1,4 +1,4 @@
-import { ContextMenuProps, MenuValueProps } from '_core/ContextMenu';
+import { ContextMenuProps, MenuValueProps } from 'components/core/ContextMenu';
 
 interface ContextMenuItemProps {
   MenuProps: ContextMenuProps;
