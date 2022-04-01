@@ -10,7 +10,13 @@ import { TableHeader, TableBody } from 'components/internal/Table';
 import TableDefaultProps from './Table.default';
 
 function Table(props: TableProps) {
-  const { sticky, dense, defaultSort, fields, defaultSortDirection } = props;
+  const {
+    sticky,
+    dense,
+    defaultSort,
+    fields,
+    defaultSortDirection
+  } = props;
 
   const [orderDirection, setOrderDirection] = useState<'asc' | 'desc'>(defaultSortDirection ? defaultSortDirection : 'asc');
   const [orderBy, setOrderBy] = useState<string | number>(defaultSort ? defaultSort : fields[0].id);
