@@ -24,6 +24,7 @@ interface TableProps extends React.BaseHTMLAttributes<HTMLTableElement> {
   defaultSort?: (string | number);
   selected?: Array<string | number>;
   selectable?: boolean;
+  /** Sticky header */
   sticky?: boolean;
   RowProps?: Modify<React.BaseHTMLAttributes<HTMLElement>, OverrideMouseEvent>;
   BodyProps?: Modify<React.BaseHTMLAttributes<HTMLElement>, OverrideMouseEvent>;
