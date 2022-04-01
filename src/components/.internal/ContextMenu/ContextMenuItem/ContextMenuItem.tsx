@@ -8,7 +8,7 @@ import {
 } from '@mui/material';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { MouseEvent, useState, useRef } from "react";
-import ContextMenu from '_core/ContextMenu';
+import ContextMenu from 'components/core/ContextMenu';
 
 function ContextMenuItem(props: ContextMenuItemProps) {
   const { MenuProps, ValueProps } = props;

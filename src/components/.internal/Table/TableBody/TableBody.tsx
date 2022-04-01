@@ -5,8 +5,8 @@ import {
   TableRow,
   TableCell,
 } from '@mui/material';
-import { FieldDefaultProps } from '_core/Table/Table.default';
-import _ from '../../../../@lodash';
+import { FieldDefaultProps } from 'components/core/Table/Table.default';
+import _ from '@lodash';
 
 /**
  * Compare values 2 indexes

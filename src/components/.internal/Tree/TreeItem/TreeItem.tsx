@@ -1,8 +1,8 @@
 import TreeItemProps, { TreeItemTextProps } from './TreeItem.d';
-import Tree from '_core/Tree';
+import Tree from 'components/core/Tree';
 import { ListItemButton, ListItemText, Tooltip, Collapse, IconButton, ListItemIcon } from '@mui/material';
 import React, { useState } from 'react';
-import _ from '../../../../@lodash';
+import _ from '@lodash';
 
 function TreeItemText(props: TreeItemTextProps) {
   const { tooltip, title, label } = props;
