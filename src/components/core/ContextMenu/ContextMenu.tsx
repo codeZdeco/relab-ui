@@ -9,7 +9,7 @@ import {
   Divider,
   ClickAwayListener,
 } from '@mui/material';
-import { ContextMenuItem } from 'components/.internal/ContextMenu';
+import { ContextMenuItem } from 'components/internal/ContextMenu';
 import ContextMenuDefaultProps from "./ContextMenu.default";
 
 const reassignAnchor = (

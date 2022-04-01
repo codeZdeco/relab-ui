@@ -1,5 +1,5 @@
 import React from 'react';
-import { TableProps, FieldProps } from '_core/Table';
+import { TableProps, FieldProps } from 'components/core/Table';
 
 interface TableHeaderProps extends React.BaseHTMLAttributes<HTMLDivElement> {
   TableProps: TableProps;

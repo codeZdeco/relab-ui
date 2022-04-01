@@ -1,7 +1,7 @@
 import { withStyles } from '@mui/styles';
 import { List } from '@mui/material';
 import { TreeProps, TreeStyles, TreeDefaultProps, TreeValueProps } from '.';
-import TreeItem from 'components/.internal/Tree/TreeItem'
+import TreeItem from 'components/internal/Tree/TreeItem'
 import { MapperProps } from './Tree.d';
 import React from 'react';
 

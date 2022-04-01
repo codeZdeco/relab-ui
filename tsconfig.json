@@ -18,16 +18,12 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "baseUrl": "src",
+    "sourceMap": true,
+    "baseUrl": "./src",
     "noFallthroughCasesInSwitch": true,
+    "importHelpers": true,
     "outDir": "lib",
   },
-  "include": [
-    "./**/*.tsx",
-    "./components/core/**/*.d.tsx",
-    "./components/.global/**/*.d.tsx",
-    "./**/*"
-  ],
   "exclude": [
     "**/lib",
     "**/node_modules",
