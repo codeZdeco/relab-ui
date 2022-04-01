@@ -1,6 +1,9 @@
 name: Build and Deploy
 on: 
+  pull_request:
+    branches: [ master ]
   push:
+    branches: [ master ]
     paths: ["src/components/**"] # Trigger the action only when files change in the folders defined here
 jobs:
   build-and-deploy:
