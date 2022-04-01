@@ -6,7 +6,7 @@ import {
   Table as MuiTable,
   TableContainer,
 } from '@mui/material';
-import { TableHeader, TableBody } from '_internal/Table';
+import { TableHeader, TableBody } from 'components/.internal/Table';
 import TableDefaultProps from './Table.default';
 
 function Table(props: TableProps) {
