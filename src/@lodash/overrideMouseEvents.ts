@@ -19,9 +19,11 @@ function overrideMouseEvents(
   const eventProps = {};
 
   events.map((eventName: string) => {
-    Object.assign(eventProps, {
-      [eventName]: (event: React.MouseEvent<HTMLElement>) => (props as { [key: string]: any })[eventName](event, value)
-    });
+    if (Object.keys(props).includes(eventName)) {
+      Object.assign(eventProps, {
+        [eventName]: (event: React.MouseEvent<HTMLElement>) => (props as { [key: string]: any })[eventName](event, value)
+      });
+    }
 
     return eventName;
   });
