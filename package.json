@@ -77,7 +77,7 @@
     "webpack": "^5.70.0"
   },
   "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
+    "registry": "https://npm.pkg.github.com"
   },
   "bugs": {
     "url": "https://github.com/codeZdeco/relab-ui/issues"
