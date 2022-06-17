@@ -1,6 +1,6 @@
 {
-  "name": "@codeZdeco/relab-ui",
-  "version": "0.2.22",
+  "name": "@codezdeco/relab-ui",
+  "version": "1.0.1",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "repository": {
@@ -83,7 +83,7 @@
     "url": "https://github.com/codeZdeco/relab-ui/issues"
   },
   "homepage": "https://github.com/codeZdeco/relab-ui#readme",
-  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "description": "Extended Lab components from MUI.",
   "directories": {
     "lib": "lib"
   },
