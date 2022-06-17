@@ -22,7 +22,17 @@ const reassignAnchor = (
 
 function ContextMenu(props: ContextMenuProps) {
   const MenuRef = useRef<HTMLDivElement>(null);
-  const { open, anchorEl, anchor, width, values, onClose: handleClose, classes } = props;
+  const BounderRef = useRef<HTMLDivElement>(null);
+  const {
+    open,
+    anchorEl,
+    anchor,
+    width,
+    values,
+    onClose: handleClose,
+    classes,
+    flexAnchor: flexAnchorHeight,
+  } = props;
 
   const isFixedPosition = typeof anchor !== 'string';
 
@@ -36,9 +46,21 @@ function ContextMenu(props: ContextMenuProps) {
 
   const flexAnchor: CSSProperties = useMemo(() => {
     const { current: menuRef } = MenuRef;
+
     if (menuRef && isFixedPosition) {
       const flexTop = reassignAnchor((anchor as AnchorProps).top, window.innerHeight, menuRef.scrollHeight);
       const flexLeft = reassignAnchor((anchor as AnchorProps).left, window.innerWidth, menuRef.scrollWidth);
+
+      return {
+        top: flexTop,
+        left: flexLeft,
+      };
+    } else if (isFixedPosition && flexAnchorHeight) {
+      const dividerNum = values.filter((value: (MenuValueProps | null)) => value === null).length;
+      const itemNum = values.length - dividerNum;
+
+      const flexTop = reassignAnchor((anchor as AnchorProps).top, window.innerHeight, flexAnchorHeight?.itemHeight * itemNum + flexAnchorHeight?.dividerHeight * dividerNum + 16);
+      const flexLeft = reassignAnchor((anchor as AnchorProps).left, window.innerWidth, width as number);
 
       return {
         top: flexTop,
@@ -49,12 +71,13 @@ function ContextMenu(props: ContextMenuProps) {
     if (isFixedPosition) return anchor;
 
     return {};
-  }, [anchor, isFixedPosition]);
+  }, [isFixedPosition, flexAnchorHeight, anchor, values, width]);
 
   return (
     <Popper
       className={classes && classes.root}
       open={open}
+      ref={BounderRef}
       anchorEl={!isFixedPosition ? anchorEl : null}
       placement={!isFixedPosition ? anchor : undefined}
       style={isFixedPosition ? flexAnchor : {}}

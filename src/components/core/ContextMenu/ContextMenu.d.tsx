@@ -27,6 +27,10 @@ interface ContextMenuProps extends BaseHTMLAttributes<HTMLElement> {
   width?: number | string;
   onClose?: (event: any) => void;
   classes?: MenuCSSProperties;
+  flexAnchor?: {
+    dividerHeight: number;
+    itemHeight: number;
+  };
 }
 
 export default ContextMenuProps;

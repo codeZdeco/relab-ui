@@ -1,5 +1,6 @@
-import { Modify } from '../../.global/commons.d';
-import { OverrideMouseEvent } from '../../.global/events.d';
+import { Modify } from "../../.global/commons.d";
+import { OverrideMouseEvent } from "../../.global/events.d";
+import { ListProps } from "@mui/material";
 
 export interface TreeCSSProperties {
   root?: string;
@@ -18,7 +19,7 @@ export interface TreeValueProps {
   /**
    * Trigger onClick event on selected item
    */
-  action?: ((event: React.MouseEvent<HTMLElement>, extra: any) => void);
+  action?: (event: React.MouseEvent<HTMLElement>, extra: any) => void;
   /**
    * Extra information of item
    */
@@ -30,18 +31,18 @@ export interface TreeValueProps {
   /**
    * Add specific icon for item
    */
-  icon?: (React.ReactNode | ((extra: any) => React.ReactNode));
+  icon?: React.ReactNode | ((extra: any) => React.ReactNode);
   /**
    * Disable mouse event on item
    */
-  disabled?: (boolean | ((extra: any) => boolean));
+  disabled?: boolean | ((extra: any) => boolean);
   /**
    * Item's children for expanded view
    */
   children?: Array<TreeValueProps> | { [key: string]: TreeValueProps };
 }
 
-interface TreeProps extends React.BaseHTMLAttributes<HTMLUListElement> {
+interface TreeProps extends ListProps {
   /**
    * List of item at same level
    */
@@ -99,16 +100,16 @@ interface TreeProps extends React.BaseHTMLAttributes<HTMLUListElement> {
     /**
      * Add specific icon for item
      */
-    icon?: (React.ReactNode | ((extra: any) => React.ReactNode));
+    icon?: React.ReactNode | ((extra: any) => React.ReactNode);
     /**
      * Disable mouse event on item
      */
-    disabled?: (boolean | ((extra: any) => boolean));
+    disabled?: boolean | ((extra: any) => boolean);
     /**
      * Trigger onClick event on selected item
      */
-    action?: ((event: React.MouseEvent<HTMLElement>, extra: any) => void);
-  }
+    action?: (event: React.MouseEvent<HTMLElement>, extra: any) => void;
+  };
   ItemProps?: Modify<React.BaseHTMLAttributes<HTMLElement>, OverrideMouseEvent>;
   classes?: TreeCSSProperties;
   filter?: (value: any) => any;

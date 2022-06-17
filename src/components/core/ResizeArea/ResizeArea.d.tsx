@@ -1,5 +1,6 @@
 import { CSSProperties } from '@mui/styled-engine';
 import { ReactNode } from 'react';
+import { BoxProps } from '@mui/material';
 
 export interface ResizeAreaCSSProperties {
   root?: string;
@@ -18,7 +19,7 @@ export interface GetBarStylesFunc {
   ): CSSProperties;
 }
 
-interface ResizeAreaProps extends React.BaseHTMLAttributes<HTMLDivElement> {
+interface ResizeAreaProps extends BoxProps {
   direction: ('n' | 'w' | 'e' | 's');
   children: ReactNode;
   BarProps?: React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>;

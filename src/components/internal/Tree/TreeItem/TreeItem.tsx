@@ -1,33 +1,53 @@
-import TreeItemProps, { TreeItemTextProps } from './TreeItem.d';
-import Tree from 'components/core/Tree';
-import { ListItemButton, ListItemText, Tooltip, Collapse, IconButton, ListItemIcon } from '@mui/material';
-import React, { useState } from 'react';
-import _ from '@lodash';
+import TreeItemProps, { TreeItemTextProps } from "./TreeItem.d";
+import Tree from "components/core/Tree";
+import {
+  ListItemButton,
+  ListItemText,
+  Tooltip,
+  Collapse,
+  IconButton,
+  ListItemIcon,
+} from "@mui/material";
+import React, { useState } from "react";
+import _ from "@lodash";
 
 function TreeItemText(props: TreeItemTextProps) {
   const { tooltip, title, label } = props;
 
-  return (
-    tooltip ? (
-      <Tooltip title={title ? title : ''}>
-        <ListItemText primary={label} />
-      </Tooltip>
-    ) : (
+  return tooltip ? (
+    <Tooltip title={title ? title : ""}>
       <ListItemText primary={label} />
-    )
+    </Tooltip>
+  ) : (
+    <ListItemText primary={label} />
   );
 }
 
 const TreeItem: React.FC<TreeItemProps> = (props) => {
   const [open, setOpen] = useState(true);
   const { ValueProps, TreeProps } = props;
-  const { label, children, tooltip, action, extra, icon: itemIcon } = ValueProps;
-  const { tooltip: isTooltip, icon, floor, padding, defaultItem, filter } = TreeProps;
+  const {
+    label,
+    children,
+    tooltip,
+    action,
+    extra,
+    icon: itemIcon,
+  } = ValueProps;
+  const {
+    tooltip: isTooltip,
+    icon,
+    floor,
+    padding,
+    defaultItem,
+    filter,
+  } = TreeProps;
 
   const isArray = Array.isArray(children);
 
-  const hasChildren = !!children
-    && !!(isArray
+  const hasChildren =
+    !!children &&
+    !!(isArray
       ? children.filter(filter ? filter : () => true).length
       : Object.values(children).filter(filter ? filter : () => true).length);
 
@@ -36,7 +56,10 @@ const TreeItem: React.FC<TreeItemProps> = (props) => {
   Object.assign(eventProps, {
     onClick: (event: React.MouseEvent<HTMLElement>) => {
       action && action(event, extra);
-      !!!action && defaultItem && defaultItem.action && defaultItem.action(event, extra);
+      !!!action &&
+        defaultItem &&
+        defaultItem.action &&
+        defaultItem.action(event, extra);
       props.onClick && props.onClick(event, ValueProps);
     },
   });
@@ -71,46 +94,38 @@ const TreeItem: React.FC<TreeItemProps> = (props) => {
         sx={calChildPadding()}
         className='TreeItem-root'
         {...eventProps}
-      // onClick={handleItemClick}
+        // onClick={handleItemClick}
       >
-        {
-          (itemIcon || (defaultItem && defaultItem.icon)) && (
-            <ListItemIcon>
-              {itemIcon || (defaultItem && defaultItem.icon)}
-            </ListItemIcon>
-          )
-        }
+        {(itemIcon || (defaultItem && defaultItem.icon)) && (
+          <ListItemIcon>
+            {itemIcon || (defaultItem && defaultItem.icon)}
+          </ListItemIcon>
+        )}
         <TreeItemText
-          title={tooltip ? tooltip : ((defaultItem && defaultItem?.tooltip) || '')}
+          title={
+            tooltip ? tooltip : (defaultItem && defaultItem?.tooltip) || ""
+          }
           tooltip={!!isTooltip}
           label={label}
         />
-        {
-          hasChildren && (
-            open ? (
-              <IconButton size='small' onClick={handleCollapse}>
-                {icon?.collapse}
-              </IconButton>
-            ) : (
-              <IconButton size='small' onClick={handleExpand}>
-                {icon?.expand}
-              </IconButton>
-            )
-          )
-        }
+        {hasChildren &&
+          (open ? (
+            <IconButton size='small' onClick={handleCollapse}>
+              {icon?.collapse}
+            </IconButton>
+          ) : (
+            <IconButton size='small' onClick={handleExpand}>
+              {icon?.expand}
+            </IconButton>
+          ))}
       </ListItemButton>
-      {
-        hasChildren && (
-          <Collapse in={open}>
-            <Tree
-              {...TreeProps}
-              items={children}
-            />
-          </Collapse>
-        )
-      }
+      {hasChildren && (
+        <Collapse in={open}>
+          <Tree {...TreeProps} items={children} />
+        </Collapse>
+      )}
     </>
   );
-}
+};
 
 export default TreeItem;

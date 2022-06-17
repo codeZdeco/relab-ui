@@ -6,6 +6,10 @@ const ContextMenuDefaultProps: ContextMenuProps = {
   anchorEl: null,
   open: false,
   width: 250,
+  flexAnchor: {
+    dividerHeight: 17,
+    itemHeight: 36,
+  },
 };
 
 export default ContextMenuDefaultProps;

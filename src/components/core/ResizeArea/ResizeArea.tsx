@@ -1,8 +1,10 @@
+import clsx from 'clsx';
 import { CSSProperties } from '@mui/styled-engine';
 import { withStyles } from '@mui/styles';
 import React, { MouseEventHandler, useCallback, useState } from 'react';
 import ResizeAreaProps, { SizeProps, GetBarStylesFunc } from "./ResizeArea.d";
 import styles from './ResizeArea.styles';
+import { Box } from '@mui/material';
 
 /**
  * Get Bar styles based on direction and user input
@@ -120,9 +122,9 @@ function ResizeArea(props: ResizeAreaProps) {
   };
 
   return (
-    <div
+    <Box
       {...props}
-      className={props.classes && props.classes.root}
+      className={clsx(props.classes && props.classes.root, props.className)}
       style={
         size as React.CSSProperties
       }
@@ -135,7 +137,7 @@ function ResizeArea(props: ResizeAreaProps) {
         style={barStyles as React.CSSProperties}
         onMouseDown={handleStartResize as unknown as MouseEventHandler<HTMLDivElement>}
       />
-    </div>
+    </Box>
   );
 }
 
