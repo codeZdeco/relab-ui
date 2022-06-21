@@ -1,38 +1,33 @@
-import { useState } from 'react';
-import { withStyles } from '@mui/styles';
-import styles from './Table.styles';
-import TableProps from './Table.d';
-import {
-  Table as MuiTable,
-  TableContainer,
-} from '@mui/material';
-import { TableHeader, TableBody } from 'components/internal/Table';
-import TableDefaultProps from './Table.default';
+import { useState } from "react";
+import { withStyles } from "@mui/styles";
+import styles from "./Table.styles";
+import TableProps from "./Table.d";
+import { Table as MuiTable, TableContainer } from "@mui/material";
+import { TableHeader, TableBody, TableFooter } from "components/internal/Table";
+import TableDefaultProps from "./Table.default";
 
 function Table(props: TableProps) {
-  const {
-    sticky,
-    dense,
-    defaultSort,
-    fields,
-    defaultSortDirection
-  } = props;
+  const { sticky, dense, defaultSort, fields, defaultSortDirection } = props;
 
-  const [orderDirection, setOrderDirection] = useState<'asc' | 'desc'>(defaultSortDirection ? defaultSortDirection : 'asc');
-  const [orderBy, setOrderBy] = useState<string | number>(defaultSort ? defaultSort : fields[0].id);
+  const [orderDirection, setOrderDirection] = useState<"asc" | "desc">(
+    defaultSortDirection ? defaultSortDirection : "asc",
+  );
+  const [orderBy, setOrderBy] = useState<string | number>(
+    defaultSort ? defaultSort : fields[0].id,
+  );
 
-  const handleSort = (_event: React.MouseEvent<HTMLElement>, fieldId: (string | number)) => {
-    const isAsc = orderBy === fieldId && orderDirection === 'asc';
+  const handleSort = (
+    _event: React.MouseEvent<HTMLElement>,
+    fieldId: string | number,
+  ) => {
+    const isAsc = orderBy === fieldId && orderDirection === "asc";
     setOrderBy(fieldId);
-    setOrderDirection(isAsc ? 'desc' : 'asc');
+    setOrderDirection(isAsc ? "desc" : "asc");
   };
 
   return (
     <TableContainer {...props}>
-      <MuiTable
-        size={dense ? 'small' : 'medium'}
-        stickyHeader={sticky}
-      >
+      <MuiTable size={dense ? "small" : "medium"} stickyHeader={sticky}>
         <TableHeader
           TableProps={props}
           onSort={handleSort}
@@ -45,6 +40,7 @@ function Table(props: TableProps) {
           orderDirection={orderDirection}
         />
       </MuiTable>
+      <TableFooter TableProps={props} />
     </TableContainer>
   );
 }
